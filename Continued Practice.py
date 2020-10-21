@@ -6,6 +6,8 @@ from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, func
 import datetime as dt
 import numpy as np
+import json
+from json import JSONEncoder
 
 
 engine = create_engine("sqlite:///C:\\Users\\samantha.ettinger\\GWU-ARL-DATA-PT-12-2019-U-C\\02-Homework\\10-Advanced-Data-Storage-and-Retrieval\\Instructions\\Resources\\hawaii.sqlite")
@@ -70,7 +72,11 @@ def temperature():
     return jsonify(tobs_data)
 
 start=dt.date(2012,1,1)
+print(start)
 total_data=[]
+session=Session(engine)
+max_start_data=session.query(func.max(Meas.tobs)).filter(Meas.date>=2012-1-1)
+print(max_start_data)
 @app.route("/api/v1.0/20120101")
 def s_date():
     session=Session(engine)
@@ -78,41 +84,21 @@ def s_date():
     avg_data=session.query(func.avg(Meas.tobs)).filter(Meas.date>=start)
     min_data=session.query(func.min(Meas.tobs)).filter(Meas.date>=start)
     session.close()
-   
- 
-    # a_data=list.append((np.ravel(avg_data)))
-    # mi_data=list.append((np.ravel(min_data)))
+
     m_data=list(max_start_data)
     a_data=list(avg_data)
     mi_data=list(min_data)
-    return jsonify(m_data, a_data, mi_data)
-    # total_data=list.append(np.ravel(avg_data))
-    # total_data=list.append(np.ravel(min_data))
-
-    
-    # to_data=[]
-    # for m in max_start_data:
-    #     t_dict={}
-    #     t_dict["tobs"]=m
-    #     if m not in t_dict:
-    #         to_data.append(m)
-    #         return t_dict
-    # for a in avg_data:
-    #     a_dict={}
-    #     a_dict["tobs"]=a
-    #     if a not in a_dict:
-    #         to_data.append(a)
-    #         return a_dict
-    # for mi in min_data:
-    #     mi_dict={}
-    #     mi_dict["tobs"]=mi
-    #     if mi not in mi_dict:
-    #         to_data.append(mi)
-    #     return f"The max temp is: {t_dict}, The average temp is: {a_dict}, The min temp is: {mi_dict}"
-
-
-        
-    
+   
+    tempdict = {
+   "max_temp": m_data[0],
+   "avg_temp": a_data[0],
+   "min_temp": mi_data[0]
+}
+   
+   
+    resp=jsonify(tempdict)
+    return resp
+   
 
 
 end=dt.date(2013,1,1)
