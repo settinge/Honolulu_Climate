@@ -118,7 +118,14 @@ def s_end_date():
     mx_data=list(ma_data)
     avg_data=list(a_data)
     min_data=list(mi_data)
-    return jsonify(mx_data,avg_data,min_data)
+
+    tdict = {
+   "max_temp": mx_data[0],
+   "avg_temp": avg_data[0],
+   "min_temp": min_data[0]
+}
+   
+    return jsonify(tdict)
 
   
  
