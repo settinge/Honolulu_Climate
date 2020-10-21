@@ -72,11 +72,6 @@ def temperature():
     return jsonify(tobs_data)
 
 start=dt.date(2012,1,1)
-print(start)
-total_data=[]
-session=Session(engine)
-max_start_data=session.query(func.max(Meas.tobs)).filter(Meas.date>=2012-1-1)
-print(max_start_data)
 @app.route("/api/v1.0/20120101")
 def s_date():
     session=Session(engine)
@@ -110,10 +105,6 @@ def s_end_date():
     a_data=session.query(func.avg(Meas.tobs)).filter(Meas.date>=start).filter(Meas.date<=end)
     mi_data=session.query(func.min(Meas.tobs)).filter(Meas.date>=start).filter(Meas.date<=end)
     session.close()
-
-    # t_data=list.append((np.ravel(ma_data)))
-    # t_data=list.append((np.ravel(a_data)))
-    # t_data=list.append((np.ravel(mi_data)))
 
     mx_data=list(ma_data)
     avg_data=list(a_data)
