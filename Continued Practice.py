@@ -6,8 +6,7 @@ from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, func
 import datetime as dt
 import numpy as np
-import json
-from json import JSONEncoder
+
 
 
 engine = create_engine("sqlite:///C:\\Users\\samantha.ettinger\\GWU-ARL-DATA-PT-12-2019-U-C\\02-Homework\\10-Advanced-Data-Storage-and-Retrieval\\Instructions\\Resources\\hawaii.sqlite")
@@ -41,6 +40,8 @@ def welcome():
         f"/api/v1.0/20120101/20130101"
 
     )
+ # gets precipitation data
+ # for the most recent year   
 
 @app.route("/api/v1.0/precipitation")
 def precipitation():
@@ -52,6 +53,7 @@ def precipitation():
     precip_data = list(np.ravel(data))
     return jsonify(precip_data)
 
+# returns a list of all stations
 @app.route("/api/v1.0/stations")
 def sta():
     session = Session(engine)
@@ -61,6 +63,9 @@ def sta():
     station_data=list(np.ravel(result))
     return jsonify(station_data)
 
+# returns a list of temperature
+# observations and dates for the 
+# previous year
 @app.route("/api/v1.0/tobs")
 def temperature():
     session = Session(engine)
@@ -71,6 +76,8 @@ def temperature():
     tobs_data = list(np.ravel(temp_data))
     return jsonify(tobs_data)
 
+# gets the max, average and min 
+# temperature for a particular date
 start=dt.date(2012,1,1)
 @app.route("/api/v1.0/20120101")
 def s_date():
@@ -95,7 +102,9 @@ def s_date():
     return resp
    
 
-
+# returns the max, min, and
+# avg temperature for a range
+# of dates
 end=dt.date(2013,1,1)
 t_data=[]
 @app.route("/api/v1.0/20120101/20130101")
