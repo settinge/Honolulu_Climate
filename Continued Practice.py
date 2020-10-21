@@ -46,12 +46,22 @@ def welcome():
 @app.route("/api/v1.0/precipitation")
 def precipitation():
     session = Session(engine)
-    data=session.query(Meas.prcp,Meas.date).\
+    prcp_data=session.query(Meas.prcp).\
+    filter(Meas.date >year_to_date).all()
+    date_data=session.query(Meas.date).\
     filter(Meas.date >year_to_date).all()
     session.close()
 
-    precip_data = list(np.ravel(data))
-    return jsonify(precip_data)
+    p_data=list(prcp_data)
+    d_data=list(date_data)
+
+    p_dict={
+   "precipitation": p_data,
+   "date": d_data
+}
+
+    # precip_data = list(np.ravel(data))
+    return jsonify(p_dict)
 
 # returns a list of all stations
 @app.route("/api/v1.0/stations")
