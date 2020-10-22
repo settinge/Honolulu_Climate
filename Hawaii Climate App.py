@@ -41,7 +41,8 @@ def welcome():
 
     )
  # gets precipitation data
- # for the most recent year   
+ # for the most recent year
+ # returns the data in a dict   
 
 @app.route("/api/v1.0/precipitation")
 def precipitation():
@@ -50,7 +51,7 @@ def precipitation():
     prcp = session.query(Meas).filter(Meas.date > year_to_date).filter(Meas.date <= '2017-08-23').all()
     for data in prcp:
         tobs_dict = {}
-        tobs_dict[data.date] = data.tobs
+        tobs_dict[data.date] = data.prcp
         tobs_data.append(tobs_dict)
     session.close()
 
