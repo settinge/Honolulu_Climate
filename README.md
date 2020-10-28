@@ -64,3 +64,38 @@ I also designed a Flask API based on the queries that I just developed.
   * When given the start only, calculated `TMIN`, `TAVG`, and `TMAX` for all dates greater than and equal to the start date.
 
   * When given the start and the end date, calculated the `TMIN`, `TAVG`, and `TMAX` for dates between the start and end date inclusive.
+  
+  ## Screenshots
+  
+  ![ScreenShot](Home.JPG)
+  
+  The home page lists all routes available
+  
+  ![ScreenShot](precip.JPG)
+  
+  This is a screenshot of the precipitation route which contains the precipitation for various dates in Honolulu. The data was stored as a dictionary in JSON format so that a data analyst or scientist could easily query the data if desired.
+  
+  ![ScreenShot](stations.JPG)
+  
+  This is a screenshot of the stations route which is a list of all weather stations in Honolulu. The data was stored in a list as that would be the easiest way for a data analyst to manipulate this data.
+  
+   ![ScreenShot](tobs.JPG)
+   
+  This is a screenshot of the tobs route which contains a list of dates and temperature observations. This data could be displayed in a dictionary or a list but chose a list since the tobs and dates are in chronological order.
+  
+   ![ScreenShot](first_date.JPG)
+   
+   This is an image of the 20120101 route which contains the min, max, and average temperature for that particular date. The data was stored as a dictionary in JSON format so that a data analyst or scientist could easily query the data if desired.
+   
+   ![ScreenShot](second_date.JPG)
+   
+  
+  This is an image of the 20120101/20130101 route which contains the min, max, and average temperature for that date range. The data was stored as a dictionary in JSON format so that a data analyst or scientist could easily query the data if desired.
+   
+  
+  
+  
+  
+  
+  
+  
