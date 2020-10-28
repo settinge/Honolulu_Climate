@@ -2,6 +2,18 @@
 
 I decided to do a climate analysis on Honolulu, Hawaii. The following outlines the analyses I completed. 
 
+## How to Run Code
+
+1. Clone repository into a directory on your computer
+
+2. Open repository in code source editor
+
+3. Navigate to "Hawaii Climate App".py and run the code
+
+4. Navigate to the server link in your terminal
+
+5. Copy and paste various routes at the end of the server link
+
 
 ### Precipitation Analysis
 
