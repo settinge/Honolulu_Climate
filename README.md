@@ -67,7 +67,7 @@ I also designed a Flask API based on the queries that I just developed.
   
   ## Screenshots
   
-  ![ScreenShot](Home.JPG)
+  ![ScreenShot](home_route.JPG)
   
   The home page lists all routes available
   
